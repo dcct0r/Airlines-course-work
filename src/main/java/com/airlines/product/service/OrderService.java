@@ -1,0 +1,45 @@
+package com.airlines.product.service;
+
+import com.airlines.product.repos.OrderRepo;
+import com.airlines.product.repos.UserRepo;
+import com.airlines.product.entity.Order;
+import com.airlines.product.entity.User;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.security.Principal;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class OrderService {
+    @Autowired
+    private final OrderRepo orderRepo;
+    @Autowired
+    private final UserRepo userRepo;
+
+
+    public void saveOrder(Principal principal, Order order){
+        order.setUser(getUserByPrincipal(principal));
+        log.info("Saving new Order. {}" , order.getName());
+        orderRepo.save(order);
+    }
+
+    public User getUserByPrincipal(Principal principal) {
+        if (principal == null) return new User();
+        return userRepo.findByEmail(principal.getName());
+    }
+
+
+    public void deleteOrder(Long id){
+        orderRepo.deleteById(id);
+    }
+
+
+    public List<Order> getOrdersForUser(Long userId) {
+        return orderRepo.findByUserId(userId);
+    }
+}

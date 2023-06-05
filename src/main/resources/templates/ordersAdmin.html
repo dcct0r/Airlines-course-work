@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Список записей ТО</title>
+  <style>
+    body{
+      font-family: Ubuntu;
+    }
+    /* Стили для таблицы */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2
+    }
+
+    /* Стили для контейнера */
+    .container {
+      width: 80%;
+      margin: auto;
+      padding-top: 50px;
+    }
+
+    /* Стили для заголовка */
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+<!--  <form action="/admin/user/orders" method="get">-->
+<!--    <h1>Список записей ТО</h1>-->
+<!--    <table>-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>Имя</th>-->
+<!--        <th>Номер телефона</th>-->
+<!--        <th>Модель машины</th>-->
+<!--        <th>Объем двигателя</th>-->
+<!--        <th>Дополнительная информация</th>-->
+<!--        <th>Действия</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr th:each="order : ${ordersAdmin}">-->
+<!--        <td th:text="${order.name}"></td>-->
+<!--        <td th:text="${order.phoneNumber}"></td>-->
+<!--        <td th:text="${order.carModel}"></td>-->
+<!--        <td th:text="${order.engineCapacity}"></td>-->
+<!--        <td th:text="${order.moreDetailed}"></td>-->
+<!--        <td>-->
+<!--          <form th:action="@{/admin/user/orders/delete}" method="POST">-->
+<!--            <input type="hidden" name="id" th:value="${order.id}"/>-->
+<!--            <button type="submit">Удалить</button>-->
+<!--          </form>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </form>-->
+  <table>
+    <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Номер телефона</th>
+      <th>Марка и модель автомобиля</th>
+      <th>Объем двигателя</th>
+      <th>Подробности</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${ordersAdmin}">
+      <td th:text="${order.name}"></td>
+      <td th:text="${order.phoneNumber}"></td>
+      <td th:text="${order.carModel}"></td>
+      <td th:text="${order.engineCapacity}"></td>
+      <td th:text="${order.moreDetailed}"></td>
+      <td>
+        <form th:action="@{/admin/user/orders/{userid}/delete/{orderId}(userid=${userid}, orderId=${order.id})}" method="post">
+          <input type="hidden" name="orderId" th:value="${order.id}" />
+          <button type="submit">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

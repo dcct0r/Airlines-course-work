@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <title>Регистрация</title>
+  <style>
+
+    p{
+      font-size: 20px;
+    }
+
+    .reg {
+      margin-top: 40px;
+    }
+
+    body{
+      background-color: gainsboro;
+      font-family: Ubuntu;
+    }
+    .press_reg {
+      border-radius: 10px;
+      border-color: #555555;
+    }
+  </style>
+</head>
+<body>
+<h1 align="center">Регистрация</h1><hr>
+  <form class="reg" align="center" action="/registration" method="post">
+    <input placeholder="Имя пользователя" type="text" name="name"><br><br>
+    <input placeholder="Электронная почта" type="email" name="email"><br><br>
+    <input placeholder="Пароль" type="password" name="password"><br><br>
+    <input class="press_reg" type="submit" value="Зарегистрироваться"/>
+  </form>
+
+<div th:if="${param.error != null}">
+  <p align="center" th:text="${param.error}"style="color: red"></p>
+</div>
+
+</body>
+</html>

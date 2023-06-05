@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Авторизация</title>
+
+  <style>
+    body{
+      margin: 10px;
+      height: 100%;
+      background-color: #0c73fe;
+      color: white;
+      font-family: Ubuntu;
+    }
+
+    a{
+      text-decoration: none;
+       color: black;
+    }
+
+    .enter{
+      margin-bottom: 10px;
+    }
+
+  </style>
+
+</head>
+<body>
+<div align="center">
+  <h1 align="center">Авторизация</h1><hr>
+  <form action="/login" method="post">
+    <input placeholder="Электронная почта" type="email" name="username"><br><br>
+    <input placeholder="Пароль" type="password" name="password"><br><br>
+    <input class="enter" type="submit" value="Вход"/>
+  </form>
+  <button><a href="/registration">Зарегистрироваться</a></button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Дешевые авиабилеты</title>
+    <style>
+        body{
+            margin: 10px;
+            height: 100%;
+            background-color: #0c73fe;
+            color: white;
+            font-family: Ubuntu;
+        }
+        .login-btn{
+            margin: 10px;
+        }
+        .logout{
+            margin: 10px;
+        }
+        .button1 {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .registration {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+
+    <div class="main_title">
+
+        <h1>Дешевые авиабилеты</h1>
+
+        <div class="registration" th:if="${username != null} ">
+            <h3><i>Логин пользователя: <span th:text="${username}"></span></i></h3>
+            <div class="logout">
+                <form action="/logout" method="post">
+                    <input type="submit" value="Выйти"/>
+                </form>
+            </div>
+            <div th:if="${#authentication.principal.isAdmin()}">
+                <a href="/admin" class="button1">Панель администратора</a>
+            </div>
+        </div>
+        <div class="registration" th:if="${username == null}">
+            <div class="login-btn">
+                <form action="/login" method="post">
+                    <input type="submit" value="Войти"/>
+                </form>
+            </div>
+        </div>
+    </div><hr>
+
+
+    <style>
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff521f;
+            color: #f7f7f7;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff521f;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+    </style>
+
+
+    <div class="card">
+        <form action="/order" method="get">
+            <h2>Выбрать маршрут</h2>
+            <p>Закажите билеты прямо сейчас!</p>
+            <input class="btn" type="submit" value="Заказать">
+        </form>
+
+        <form action="/orders" method="get">
+            <input class="button" type="submit" value="Расписание">
+        </form>
+    </div>
+
+    <style>
+        .card {
+            background-color: #f7f7f7;
+            border: 1px solid #e6e6e6;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            color: black;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #15aabd;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 0 10px #15aabd;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+
+
+</div>
+
+</body>
+</html>
